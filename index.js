@@ -5,29 +5,56 @@ import './style.css';
 const appDiv = document.getElementById('app');
 
 $(document).ready(function () {
-  $('#example').DataTable({
+  var table = $('#example').DataTable({
     processing: true,
     serverSide: true,
-    ajax: 'https://raw.githubusercontent.com/victorinforce/js-fd1v5g/main/public/data.json',
+    ajax: 'https://raw.githubusercontent.com/victorinforce/js-fd1v5g/main/public/data.json?2',
     columns: [
-      { data: 'first_name' },
-      { data: 'last_name' },
-      { data: 'position' },
-      { data: 'office' },
-      { data: 'start_date' },
-      { data: 'salary' },
+      {
+        // title: () => '<input type="checkbox" />',
+        render: () => '',
+        orderable: false,
+        width: 20,
+      },
+      { data: 'first_name', title: 'Nome' },
+      { data: 'last_name', title: 'Sobrenome' },
+      { data: 'position', title: 'Posição' },
+      { data: 'office', title: 'Office' },
+      { data: 'start_date', title: 'Data' },
+      { data: 'salary', title: 'Salário' },
     ],
-    // columnDefs: [
-    //   {
-    //     orderable: false,
-    //     className: 'select-checkbox',
-    //     targets: 0,
-    //   },
-    // ],
-    // select: {
-    //   style: 'os',
-    //   selector: 'td:first-child',
-    // },
+    columnDefs: [
+      {
+        orderable: false,
+        className: 'select-checkbox',
+        targets: [0],
+      },
+    ],
+    select: {
+      style: 'os',
+      selector: 'td:first-child',
+    },
     order: [[1, 'asc']],
+    initComplete: function (settings, json) {
+      $('#example thead th:first-child').html(
+        '<input type="checkbox" class=selectAll />'
+      );
+
+      $('.selectAll').click(() => {
+        if ($('.selectAll').is(':checked')) {
+          table.rows().select();
+        } else {
+          table.rows().deselect();
+        }
+      });
+    },
+  });
+
+  $('.obter').click(() => {
+    var rows = table.rows({ selected: true });
+    debugger;
+    console.log('rows', JSON.stringify(rows));
+    var data = rows.data();
+    console.log('data', JSON.stringify(data));
   });
 });

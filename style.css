@@ -1,3 +1,12 @@
 h1, h2 {
   font-family: Lato;
 }
+
+table.dataTable thead th.select-checkbox {
+  padding: 10px 10px;
+  width: auto;
+}
+
+table.dataTable tbody td.select-checkbox {
+  padding: 0px;
+}
