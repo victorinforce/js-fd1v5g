@@ -51,10 +51,17 @@ $(document).ready(function () {
   });
 
   $('.obter').click(() => {
+    var selecionados = $('.selecionados');
+    selecionados.html('');
+
     var rows = table.rows({ selected: true });
-    debugger;
+
     console.log('rows', JSON.stringify(rows));
     var data = rows.data();
-    console.log('data', JSON.stringify(data));
+    debugger;
+    for (var i = 0; i < rows.count(); i++) {
+      console.log(i);
+      selecionados.append(JSON.stringify(data[i], null, '\t'));
+    }
   });
 });
