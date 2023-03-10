@@ -4,6 +4,31 @@ import './style.css';
 // Write Javascript code!
 const appDiv = document.getElementById('app');
 
+/* Formatting function for row details - modify as you need */
+function format(d) {
+  // `d` is the original data object for the row
+  return (
+      '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+      '<tr>' +
+      '<td>First name:</td>' +
+      '<td>' +
+      d.first_name +
+      '</td>' +
+      '</tr>' +
+      '<tr>' +
+      '<td>Last name:</td>' +
+      '<td>' +
+      d.last_name +
+      '</td>' +
+      '</tr>' +
+      '<tr>' +
+      '<td>Extra info:</td>' +
+      '<td>And any further details here (images etc)...</td>' +
+      '</tr>' +
+      '</table>'
+  );
+}
+
 $(document).ready(function () {
   var table = $('#example').DataTable({
     language: {
@@ -14,9 +39,15 @@ $(document).ready(function () {
       [100, 500, 1000, 'Tudo'],
     ],
     processing: true,
-    serverSide: true,
+    // serverSide: true,
     ajax: 'https://raw.githubusercontent.com/victorinforce/js-fd1v5g/main/public/data.json?2',
     columns: [
+      {
+        className: 'dt-control',
+        orderable: false,
+        data: null,
+        defaultContent: '',
+    },
       {
         // title: () => '<input type="checkbox" />',
         render: () => '',
@@ -33,16 +64,16 @@ $(document).ready(function () {
       {
         orderable: false,
         className: 'select-checkbox',
-        targets: [0],
+        targets: [1],
       },
     ],
     select: {
       style: 'os',
-      selector: 'td:first-child',
+      selector: 'td.select-checkbox', // td:first-child
     },
-    order: [[1, 'asc']],
+    order: [[2, 'asc']],
     initComplete: function (settings, json) {
-      $('#example thead th:first-child').html(
+      $('#example thead th.select-checkbox').html(
         '<input type="checkbox" class=selectAll />'
       );
 
@@ -70,4 +101,20 @@ $(document).ready(function () {
       selecionados.append(JSON.stringify(data[i], null, '\t'));
     }
   });
+
+  // Add event listener for opening and closing details
+  $('#example tbody').on('click', 'td.dt-control', function () {
+    var tr = $(this).closest('tr');
+    var row = table.row(tr);
+
+    if (row.child.isShown()) {
+        // This row is already open - close it
+        row.child.hide();
+        tr.removeClass('shown');
+    } else {
+        // Open this row
+        row.child(format(row.data())).show();
+        tr.addClass('shown');
+    }
+});
 });
