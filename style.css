@@ -1,7 +1,11 @@
 /* select-checkbox */
 table.dataTable thead th.select-checkbox {
   padding: 10px 10px;
-  width: auto;
+  max-width: 14px;
+}
+
+table.dataTable th.dt-control {
+  max-width: 14px;
 }
 
 table.dataTable tbody td.select-checkbox {
