@@ -1,7 +1,4 @@
-h1, h2 {
-  font-family: Lato;
-}
-
+/* select-checkbox */
 table.dataTable thead th.select-checkbox {
   padding: 10px 10px;
   width: auto;
@@ -9,4 +6,18 @@ table.dataTable thead th.select-checkbox {
 
 table.dataTable tbody td.select-checkbox {
   padding: 0px;
+}
+
+/* dt-control */
+table.dataTable td.dt-control:before {
+  color: #444;
+  border: none;
+  box-shadow: none;
+  content: '▶';
+  background: none;
+}
+
+table.dataTable tr.dt-hasChild td.dt-control:before {
+  content: '▼';
+  background: none;
 }
