@@ -6,6 +6,13 @@ const appDiv = document.getElementById('app');
 
 $(document).ready(function () {
   var table = $('#example').DataTable({
+    language: {
+        url: '//cdn.datatables.net/plug-ins/1.13.3/i18n/pt-BR.json',
+    },
+    lengthMenu: [
+      [100, 500, 1000, -1],
+      [100, 500, 1000, 'Tudo'],
+    ],
     processing: true,
     serverSide: true,
     ajax: 'https://raw.githubusercontent.com/victorinforce/js-fd1v5g/main/public/data.json?2',
@@ -14,7 +21,6 @@ $(document).ready(function () {
         // title: () => '<input type="checkbox" />',
         render: () => '',
         orderable: false,
-        width: 20,
       },
       { data: 'first_name', title: 'Nome' },
       { data: 'last_name', title: 'Sobrenome' },
