@@ -1,0 +1,45 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+  
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"
+  ></script>
+  
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#test').html('<em>It works!</em>');
+      $('#test em').css({ color: '#0c0' });
+    });
+  </script>
+</head>
+<body id="app">
+  <h1>datatables.net</h1>
+  <div>
+    <table id="example" class="display" style="width: 100%">
+      <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Position</th>
+          <th>Office</th>
+          <th>Start date</th>
+          <th>Salary</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Position</th>
+          <th>Office</th>
+          <th>Start date</th>
+          <th>Salary</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</body>
