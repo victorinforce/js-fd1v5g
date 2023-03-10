@@ -8,31 +8,31 @@ const appDiv = document.getElementById('app');
 function format(d) {
   // `d` is the original data object for the row
   return (
-      '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-      '<tr>' +
-      '<td>First name:</td>' +
-      '<td>' +
-      d.first_name +
-      '</td>' +
-      '</tr>' +
-      '<tr>' +
-      '<td>Last name:</td>' +
-      '<td>' +
-      d.last_name +
-      '</td>' +
-      '</tr>' +
-      '<tr>' +
-      '<td>Extra info:</td>' +
-      '<td>And any further details here (images etc)...</td>' +
-      '</tr>' +
-      '</table>'
+    '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+    '<tr>' +
+    '<td>First name:</td>' +
+    '<td>' +
+    d.first_name +
+    '</td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Last name:</td>' +
+    '<td>' +
+    d.last_name +
+    '</td>' +
+    '</tr>' +
+    '<tr>' +
+    '<td>Extra info:</td>' +
+    '<td>And any further details here (images etc)...</td>' +
+    '</tr>' +
+    '</table>'
   );
 }
 
 $(document).ready(function () {
   var table = $('#example').DataTable({
     language: {
-        url: '//cdn.datatables.net/plug-ins/1.13.3/i18n/pt-BR.json',
+      url: '//cdn.datatables.net/plug-ins/1.13.3/i18n/pt-BR.json',
     },
     lengthMenu: [
       [100, 500, 1000, -1],
@@ -40,14 +40,14 @@ $(document).ready(function () {
     ],
     processing: true,
     // serverSide: true,
-    ajax: 'https://raw.githubusercontent.com/victorinforce/js-fd1v5g/main/public/data.json?2',
+    ajax: 'https://raw.githubusercontent.com/victorinforce/js-fd1v5g/main/public/data-v1.json',
     columns: [
       {
         className: 'dt-control',
         orderable: false,
         data: null,
         defaultContent: '',
-    },
+      },
       {
         // title: () => '<input type="checkbox" />',
         render: () => '',
@@ -108,13 +108,13 @@ $(document).ready(function () {
     var row = table.row(tr);
 
     if (row.child.isShown()) {
-        // This row is already open - close it
-        row.child.hide();
-        tr.removeClass('shown');
+      // This row is already open - close it
+      row.child.hide();
+      tr.removeClass('shown');
     } else {
-        // Open this row
-        row.child(format(row.data())).show();
-        tr.addClass('shown');
+      // Open this row
+      row.child(format(row.data())).show();
+      tr.addClass('shown');
     }
-});
+  });
 });
